@@ -1,4 +1,3 @@
-import Hero from "@/components/hero_component"
 import MainNav from "@/components/main_nav"
 
 export default function Home() {
@@ -6,8 +5,7 @@ export default function Home() {
     <div>
         <MainNav>
         </MainNav>
-        <Hero>
-        </Hero>
+        <p>This is the Contact page.</p>
     </div>
   );
 }
