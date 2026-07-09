@@ -1,4 +1,10 @@
 import data from "@/data/fact.json";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact - Physical Collections",
+  description: "Get in touch with us at Physical Collections",
+};
 
 interface CatFacts {
   fact: string;

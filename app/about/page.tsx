@@ -1,5 +1,11 @@
 import data from "@/data/characters.json";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About - Physical Collections",
+  description: "Learn about Physical Collections",
+};
 
 interface CardProps {
   id?: number;
