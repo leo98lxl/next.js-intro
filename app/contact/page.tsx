@@ -1,4 +1,3 @@
-import MainNav from "@/components/main_nav";
 import data from "@/data/fact.json";
 
 interface CatFacts {
@@ -18,12 +17,10 @@ function CatCard({fact, length}: CatFacts) {
 export default function Contact() {
   return (
     <div>
-        <MainNav>
-        </MainNav>
-        <h1 className="p-4 font-bold text-center">This is the Contact page.</h1>
-        <section>
-          <CatCard fact={data.fact} length={data.length} />
-        </section>
+      <h1 className="p-4 font-bold text-center">This is the Contact page.</h1>
+      <section>
+        <CatCard fact={data.fact} length={data.length} />
+      </section>
     </div>
   );
 }
