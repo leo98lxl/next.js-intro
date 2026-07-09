@@ -1,5 +1,6 @@
 import MainNav from "@/components/main_nav";
 import data from "@/data/characters.json";
+import Image from "next/image";
 
 interface CardProps {
   id?: number;
@@ -11,13 +12,21 @@ interface CardProps {
   image: string | null;
 }
 
-function FuturamaCard({name, image}: CardProps){
+function FuturamaCard({name, image, gender, status, species, createdAt}: CardProps){
   return (
-    <div className="grid">
+    <article className="grid">
       <h3 className="font-extrabold text-center p-4">{name}</h3>
-      {image ? <img src={image}/> : <img src="https://placehold.co/600x400"/>}
+      
+      {image ? <Image src={image} alt={`Picture of Futurama character ${name}`} width={400} height={600}/> : <img src="https://placehold.co/600x400" alt="Placeholder image"/>}
+      
+      <div className="p-4 text-cyan-500">
+        {species && <p><strong>Species: </strong>{species}</p>}
+        {gender && <p><strong>Gender: </strong>{gender}</p>}
+        {status && <p><strong>Status: </strong>{status}</p>}
+        {createdAt && <p><strong>Creation date: </strong>{createdAt}</p>}
+      </div>
       <a href="#" className="p-4 underline text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 transition duration-150">Läs mer</a>
-    </div>
+    </article>
   )
 }
 
@@ -32,9 +41,13 @@ export default function About() {
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(30ch,1fr))] gap-4">
             {characters.slice(0, 50).map((char)=>(
               <li key={char.id}>
-              <h3 className="font-extrabold text-center p-4">{char.name}</h3>
-              {char.image ? <img src={char.image}/> : <img src="https://placehold.co/600x400"/>}
-              <a href="#" className="p-4 underline text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 transition duration-150">Läs mer</a>
+              <FuturamaCard 
+              name={char.name} 
+              image={char.image}
+              species={char.species}
+              gender={char.gender}
+              status={char.status}
+              createdAt={char.createdAt} />
             </li>
             ))}
           </ul>
