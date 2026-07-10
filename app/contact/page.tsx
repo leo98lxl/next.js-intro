@@ -1,5 +1,6 @@
-import data from "@/data/fact.json";
 import type { Metadata } from "next";
+import data from "@/data/fact.json";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Contact - Physical Collections",
@@ -22,9 +23,10 @@ function CatCard({fact, length}: CatFacts) {
 
 export default function Contact() {
   return (
-    <div>
-      <h1 className="p-4 font-bold text-center">This is the Contact page.</h1>
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <Image src="/IMG_4155.jpg" width={800} height={200} loading="eager" alt="Picture of movie collection"></Image>
       <section>
+      <h1 className="p-4 font-bold text-center">This is the Contact page.</h1>
         <CatCard fact={data.fact} length={data.length} />
       </section>
     </div>

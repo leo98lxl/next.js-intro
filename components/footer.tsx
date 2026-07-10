@@ -19,7 +19,7 @@ export default function MainFooter() {
                     height={16} />
                 <p>Storing your collections since 1998.</p>
                 <ul>
-                    <li className="flex flex-wrap gap-4">
+                    <li className="flex flex-wrap gap-4 md:flex-row">
                     {logos.map((logo) => (
                         <a href={logo.href} key={logo.id}><Image className="dark:invert" src={logo.src} alt="Logo" width={24} height={24}></Image></a>
                     ))}

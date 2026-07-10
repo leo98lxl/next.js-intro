@@ -28,12 +28,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body>
+        <section className="max-w-[1600px] mx-auto border-x-4 border-gray-700">
         <MainNav>
         </MainNav>
+        <main className="py-16 px-16 bg-blue dark:bg-black sm:items-start">
         {children}
+        </main>
         <MainFooter>
         </MainFooter>
+        </section>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
-import Hero from "@/components/hero_component";
 import type { Metadata } from "next";
+import Hero from "@/components/hero_component";
 
 export const metadata: Metadata = {
   title: "Home - Physical Collections",
