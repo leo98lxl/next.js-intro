@@ -1,5 +1,6 @@
 import data from "@/data/characters.json";
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ interface CardProps {
   image: string | null;
 }
 
-function FuturamaCard({name, image, gender, status, species, createdAt}: CardProps){
+export function FuturamaCard({id, name, image, gender, status, species, createdAt}: CardProps){
   return (
     <article className="grid">
       <h3 className="font-extrabold text-center p-4">{name}</h3>
@@ -30,7 +31,6 @@ function FuturamaCard({name, image, gender, status, species, createdAt}: CardPro
         {status && <p><strong>Status: </strong>{status}</p>}
         {createdAt && <p><strong>Creation date: </strong>{createdAt}</p>}
       </div>
-      <a href="#" className="p-4 underline text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 transition duration-150">Läs mer</a>
     </article>
   )
 }
@@ -51,6 +51,7 @@ export default function About() {
             gender={char.gender}
             status={char.status}
             createdAt={char.createdAt} />
+            <Link href={`/character/${char.id}`} className="p-4 underline text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 transition duration-150">Läs mer</Link>
           </li>
           ))}
         </ul>
