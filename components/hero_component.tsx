@@ -7,7 +7,7 @@ function multiply(x:number, y:number) {
 export default function Hero() {
     return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-        <Image src="/IMG_2585.jpg" width={800} height={200} loading="eager" alt="Picture of movie collection"></Image>
+        <Image src="/IMG_2585.jpg" width={800} height={200} loading="lazy" alt="Picture of movie collection"></Image>
         <div className="flex flex-col items-center gap-6 py-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             Welcome to Physical Collections!
