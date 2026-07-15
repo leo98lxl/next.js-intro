@@ -1,14 +1,23 @@
+import pokemon from "@/data/pokeapi.co.json";
+
+export function getPokemon() {
+  return pokemon;
+}
+
 interface Pokemon {
-  name: string;
-  url: string;
+  count?: number;
+  next?: string;
+  previous?: string;
+  results: {
+    name: string;
+    url: string;
+  }
 }
 
 interface PokemonResponse {
   items: Pokemon[];
   page: number;
   pages: number;
-  size: number;
-  total: number;
 }
 
 export async function fetchPokemonREST(page = 1, limit = 25, query=""): Promise<PokemonResponse> {
