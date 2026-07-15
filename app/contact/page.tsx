@@ -78,7 +78,7 @@ export default async function Contact() {
       <h1 className="p-4 font-bold text-center">This is the Contact page.</h1>
         <CatCard fact={data.fact} length={data.length} />
 
-        {pokemonList.map((pokemon) => (
+        {pokemonList.slice(0, 25).map((pokemon) => (
         <DisplayPokemonQl key={pokemon.name} name={pokemon.name} id={pokemon.id} /> ))}
       </section>
     </div>
