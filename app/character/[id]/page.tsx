@@ -1,7 +1,7 @@
-import data from "@/data/characters.json";
+import data from "@/data/characters-futurama.json";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FuturamaCard } from "@/app/about/page";
+import { FuturamaCard } from "@/components/futurama-card";
 
 export default async function AboutCharacter({params}:{params: Promise<{id: string}>}) {
     const {id: idString} = await params;
