@@ -23,7 +23,7 @@ export default async function Profile({searchParams}: {searchParams: Promise<{[k
                   <input className="outline-2" name="query" />
                   <button className="p-4 text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" type="submit">Search</button>
                   </Form>
-                  <DisplayPokemonCard currentPage={currentPage} pageLimit={pageLimit} query={query}>
+                  <DisplayPokemonCard currentPage={currentPage} pageLimit={pageLimit} >
                   </DisplayPokemonCard>
                 <Link className="text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" href={ {pathname: "/profile", query: {page: currentPage - 1 }}}>Previous Page</Link>
                 <Link className="text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" href={ {pathname: "/profile", query: {page: currentPage + 1 }}}>Next Page</Link>

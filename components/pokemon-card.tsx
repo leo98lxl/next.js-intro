@@ -1,13 +1,16 @@
-import { fetchPokemonREST, getPokemon } from "@/data/characters-pokemon";
+import { fetchPokemonREST } from "@/data/characters-pokemon";
+import Link from "next/link";
 
 interface Pokemon {
+  name: string;
+  url: string;
+}
+
+interface PokemonResponse {
   count?: number;
   next?: string;
   previous?: string;
-  results: {
-    name: string;
-    url: string;
-  }
+  results: Pokemon[];
 }
 
 function DisplayPokemon({results}: {results: Pokemon}) {
@@ -20,11 +23,14 @@ function DisplayPokemon({results}: {results: Pokemon}) {
 }
 
 export default async function DisplayPokemonCard({currentPage, pageLimit, query,}: {currentPage: number, pageLimit: number, query?: string}) {
-    const { page, pages, items: pokemon, } = await fetchPokemonREST(currentPage, pageLimit, query);
+    const { count, previous, next, results: pokemon, } = await fetchPokemonREST(currentPage, pageLimit, query);
     return (
         <div>
             {pokemon?.map((poke) =>
-            <DisplayPokemon results={poke} /> )}
+            <DisplayPokemon key={poke.name} results={poke} /> )}
+            <p>Total Pokémon: {count}</p>
+            <Link href={`/profile/${previous}`}>Previous Page</Link>
+            <Link href={`/profile/${next}`}>Next Page</Link>
         </div>
     )  
 }

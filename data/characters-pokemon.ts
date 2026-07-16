@@ -5,23 +5,19 @@ export function getPokemon() {
 }
 
 interface Pokemon {
-  count?: number;
-  next?: string;
-  previous?: string;
-  results: {
-    name: string;
-    url: string;
-  }
+  name: string;
+  url: string;
 }
 
 interface PokemonResponse {
-  items: Pokemon[];
-  page: number;
-  pages: number;
+  count?: number;
+  next?: string;
+  previous?: string;
+  results: Pokemon[]; 
 }
 
 export async function fetchPokemonREST(page = 1, limit = 25, query=""): Promise<PokemonResponse> {
-    const urlPoke = new URL("https://pokeapi.co/api/v2/pokemon/");
+    const urlPoke = new URL("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20");
 
     urlPoke.searchParams.append("page", String(page));
     urlPoke.searchParams.append("size", String(limit));
