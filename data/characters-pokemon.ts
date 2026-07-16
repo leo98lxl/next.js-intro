@@ -16,11 +16,13 @@ interface PokemonResponse {
   results: Pokemon[]; 
 }
 
-export async function fetchPokemonREST(offset: number, limit: number, query=""): Promise<PokemonResponse> {
+export async function fetchPokemonREST(page = 1, limit = 20, query=""): Promise<PokemonResponse> {
+  const offset = (page - 1) * limit;
   const urlPoke = new URL(`https://pokeapi.co/api/v2/pokemon/`);
   urlPoke.searchParams.append("offset", String(offset));
   urlPoke.searchParams.append("limit", String(limit));
   if (query !== "") urlPoke.searchParams.append("query", query);
+
   const resPoke = await fetch(urlPoke);
   if (!resPoke.ok) {
       console.warn(resPoke);

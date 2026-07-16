@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Form from "next/form";
 import Image from "next/image";
-import Link from "next/link";
 import DisplayPokemonCard from "@/components/pokemon-card";
 
 export const metadata: Metadata = {

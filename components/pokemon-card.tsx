@@ -6,13 +6,6 @@ interface Pokemon {
   url: string;
 }
 
-interface PokemonResponse {
-  count?: number;
-  next?: string;
-  previous?: string;
-  results: Pokemon[];
-}
-
 function DisplayPokemon({results}: {results: Pokemon}) {
   return (
     <article className="grid">
@@ -23,18 +16,23 @@ function DisplayPokemon({results}: {results: Pokemon}) {
 }
 
 export default async function DisplayPokemonCard({currentPage, pageLimit, query,}: {currentPage: number, pageLimit: number, query?: string}) {
-  const { count, previous, next, results: pokemon, } = await fetchPokemonREST(currentPage, pageLimit, query);
+  const { count, previous, next, results: pokemon} = await fetchPokemonREST(currentPage, pageLimit, query);
   const previousPokePage = convertPokeUrl(previous, currentPage);
   const nextPokePage = convertPokeUrl(next, currentPage);
 
-  const newPokeUrl = (page: number) => `/profile/?page=${page}&limit=${pageLimit}&query=${query}`;
     return (
         <div>
             {pokemon?.map((poke) =>
             <DisplayPokemon key={poke.name} results={poke} /> )}
-            <p>Total Pokémon: {count}</p>
-            {previousPokePage && <Link href={newPokeUrl(previousPokePage)}>Previous Page</Link>}
-            {nextPokePage && <Link href={ {pathname: "/profile", query: {page: currentPage + 1 }}}>Next Page</Link>}
+            <div className="py-4">
+            <p>Total Pokémon: <span className="p-4 text-cyan-500">{count}</span></p>
+
+            {previousPokePage && <Link className="p-4 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" 
+            href={ {pathname: "/profile", query: {page: currentPage - 1 }}}>Previous Page</Link>}
+
+            {nextPokePage && <Link className="p-4 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150"
+            href={ {pathname: "/profile", query: {page: currentPage + 1 }}}>Next Page</Link>}
+            </div>
         </div>
     )  
 }
