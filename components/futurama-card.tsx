@@ -35,7 +35,7 @@ export default function DisplayFuturamaCard() {
     <main>
       <div className="p-4 text-center">
         <h1 className="p-4 font-bold">This is the Character Page.</h1>
-        <p>Click on "Read more" to learn more about each character.</p>
+        <p>Click on "Read more" to focus on one character.</p>
       </div>
       <ul className="grid grid-cols-[repeat(auto-fill,minmax(30ch,1fr))] gap-4">
         {characters.slice(0, 50).map((char)=>(

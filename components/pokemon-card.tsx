@@ -1,4 +1,4 @@
-import { fetchPokemonREST } from "@/data/characters-pokemon";
+import { convertPokeUrl, fetchPokemonREST } from "@/data/characters-pokemon";
 import Link from "next/link";
 
 interface Pokemon {
@@ -23,14 +23,18 @@ function DisplayPokemon({results}: {results: Pokemon}) {
 }
 
 export default async function DisplayPokemonCard({currentPage, pageLimit, query,}: {currentPage: number, pageLimit: number, query?: string}) {
-    const { count, previous, next, results: pokemon, } = await fetchPokemonREST(currentPage, pageLimit, query);
+  const { count, previous, next, results: pokemon, } = await fetchPokemonREST(currentPage, pageLimit, query);
+  const previousPokePage = convertPokeUrl(previous, currentPage);
+  const nextPokePage = convertPokeUrl(next, currentPage);
+
+  const newPokeUrl = (page: number) => `/profile/?page=${page}&limit=${pageLimit}&query=${query}`;
     return (
         <div>
             {pokemon?.map((poke) =>
             <DisplayPokemon key={poke.name} results={poke} /> )}
             <p>Total Pokémon: {count}</p>
-            <Link href={`/profile/${previous}`}>Previous Page</Link>
-            <Link href={`/profile/${next}`}>Next Page</Link>
+            {previousPokePage && <Link href={newPokeUrl(previousPokePage)}>Previous Page</Link>}
+            {nextPokePage && <Link href={ {pathname: "/profile", query: {page: currentPage + 1 }}}>Next Page</Link>}
         </div>
     )  
 }

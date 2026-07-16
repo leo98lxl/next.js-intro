@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function Profile({searchParams}: {searchParams: Promise<{[key: string]: string | string[] | undefined }>;}) {
   const {page: pageString, limit, query} = (await searchParams);
   const currentPage = pageString ? Number(pageString) : 1;
-  const pageLimit = limit ? Number(limit) : 25;
+  const pageLimit = limit ? Number(limit) : 20;
   
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -23,10 +23,8 @@ export default async function Profile({searchParams}: {searchParams: Promise<{[k
                   <input className="outline-2" name="query" />
                   <button className="p-4 text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" type="submit">Search</button>
                   </Form>
-                  <DisplayPokemonCard currentPage={currentPage} pageLimit={pageLimit} >
+                  <DisplayPokemonCard currentPage={currentPage} pageLimit={pageLimit} query={`${query}`}>
                   </DisplayPokemonCard>
-                <Link className="text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" href={ {pathname: "/profile", query: {page: currentPage - 1 }}}>Previous Page</Link>
-                <Link className="text-cyan-500 hover:text-cyan-200 focus-visible:text-cyan-200 hover:cursor-pointer transition duration-150" href={ {pathname: "/profile", query: {page: currentPage + 1 }}}>Next Page</Link>
           </div>
     </div>
   );
